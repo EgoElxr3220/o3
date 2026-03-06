@@ -2,7 +2,11 @@
 {
     private static void Main(string[] args)
     {
-        
+        Teacher teacher = new Teacher("Greg Hanson");
+        teacher.AddStudent(new Student("Brett", 88));
+        teacher.AddStudent(new Student("Brad", 85));
+        teacher.AddStudent(new Student("Sarah", 98));
+        teacher.DisplayStudents();
     }
 }
 
@@ -21,21 +25,23 @@ public class Student
 public class Teacher
 {
     public string Name { get; set; }
-    public List<Student> Students { get; set; }
+    public static List<Student> Students = new List<Student>();
 
-    public Teacher(string name, List<Student> students)
+    public Teacher(string name)
     {
         Name = name;
-        Students = students;
     }
 
-    public static void AddStudent(Student student)
+    public void AddStudent(Student student)
     {
-
+        Students.Add(student);
     }
 
-    public static void DisplayStudents()
+    public void DisplayStudents()
     {
-
+        foreach (Student student in Students)
+        {
+            Console.WriteLine($"{student.Name}: {student.Grade}");
+        }
     }
 }
